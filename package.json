@@ -32,10 +32,16 @@
     "react": "^16.4.2",
     "react-autobind": "^1.0.6",
     "react-dom": "^16.4.2",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.0",
     "webpack": "^4.17.2",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.7",
     "webpack-karma-jasmine": "^3.0.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "css-loader": "^1.0.0",
+    "node-sass": "^4.9.3",
+    "webpack-icons-installer": "^2.0.0"
+  }
 }

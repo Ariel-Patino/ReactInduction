@@ -1,22 +1,21 @@
 import React, { Component } from "react";
-import ReactDOM from 'react-dom';
-import autoBind from 'react-autobind';
+import ReactDOM from "react-dom";
+import autoBind from "react-autobind";
+import SearchBar from "./SearchBar";
+import appStyle from "../../../styles/css/appStyles.css"
+import words from "../../../assets/files/words.json";
 
-import SearchBar from './SearchContainer';
-import styles from './demo.css';
-import words from './words.json';
-
-class Demo extends Component {
+class SearchComponent extends Component {
   constructor(props) {
-    super(props);
+    super(props);    
 
     this.state = {
-      suggestions: []
-    };
+        suggestions: []
+      };
 
-    autoBind(this);
-    }
-
+      this.appStyles = null;
+      autoBind(this);
+  }
 
   handleClear() {
     this.setState({
@@ -48,28 +47,28 @@ class Demo extends Component {
         <span>{searchTerm}</span>
         <strong>{suggestion.substr(searchTerm.length)}</strong>
       </span>
-    );
+      );
+     
   }
 
-  render() {
+    render() {
+
     return (
       <SearchBar
         autoFocus
         renderClearButton
         renderSearchButton
-        placeholder="select an SAT word"
+        placeholder="Select an attribute"
         onChange={this.handleChange}
         onClear={this.handleClear}
         onSelection={this.handleSelection}
         onSearch={this.handleSearch}
         suggestions={this.state.suggestions}
         suggestionRenderer={this.suggestionRenderer}
-        styles={styles}
+        styles={appStyle}
       />
     );
   }
 }
 
-
-const wrap = document.getElementById("search-article-autocomplete");
-wrap ? ReactDOM.render(<Demo />, wrap) : false;
+ReactDOM.render(<SearchComponent />, document.getElementById("search-article-autocomplete"));
