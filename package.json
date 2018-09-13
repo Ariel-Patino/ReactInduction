@@ -40,8 +40,14 @@
     "webpack-karma-jasmine": "^3.0.0"
   },
   "dependencies": {
+    "autoprefixer": "^9.1.5",
+    "copy-webpack-plugin": "^4.5.2",
     "css-loader": "^1.0.0",
+    "extract-loader": "^3.0.0",
+    "file-loader": "^2.0.0",
     "node-sass": "^4.9.3",
+    "postcss-cli": "^6.0.0",
+    "postcss-loader": "^3.0.0",
     "webpack-icons-installer": "^2.0.0"
   }
 }
