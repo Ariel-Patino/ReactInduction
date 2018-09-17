@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import autoBind from "react-autobind";
 import SearchBar from "./SearchBar";
-import appStyle from "../../../../dist/css/app.blocks.css";
-import words from "../../../assets/files/words.json";
+import appStyle from "../../../../dist/styles/css/app.blocks.css";
+import words from "../../../../dist/assets/files/words.json";
 
 class SearchComponent extends Component {
   constructor(props) {

@@ -1,6 +1,8 @@
-const HtmlWebPackPlugin = require("html-webpack-plugin");
-//const CopyWebpackPlugin = require('copy-webpack-plugin')
 const path = require("path");
+const writeFilePlugin = require("write-file-webpack-plugin"); //copy files on development
+const HtmlWebPackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin"); //copy files on prodction
+
 
 module.exports = {
     entry: {
@@ -59,7 +61,7 @@ module.exports = {
                     {
                         loader: 'file-loader',
                         options: {
-                            name: 'css/[name].blocks.css',
+                            name: 'styles/css/[name].blocks.css',
                         }
                     },
                     {
@@ -79,9 +81,13 @@ module.exports = {
         ]
     },
     plugins: [
+        new CopyWebpackPlugin([{ from: "./src/assets/*", to: "./dist/assets/*", force: true }]),
         new HtmlWebPackPlugin({
             template: "./src/index.html",
             filename: "./index.html"
-        })
+        }),
+        new writeFilePlugin({
+            test: /foot/
+        })      
     ]
 };
