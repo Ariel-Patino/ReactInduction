@@ -50,6 +50,7 @@
     "node-sass": "^4.9.3",
     "postcss-cli": "^6.0.0",
     "postcss-loader": "^3.0.0",
+    "react-list-view": "^1.0.0",
     "webpack-icons-installer": "^2.0.0"
   }
 }
