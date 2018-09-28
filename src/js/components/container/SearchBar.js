@@ -180,10 +180,7 @@ class SearchBar extends Component {
         const renderSuggestions = state.value && props.suggestions.length > 0;
 
         return (
-          <div
-            className={styles.wrapper}
-            ref={ref => this.container = ref}
-          >
+          <div>
             <div
               className={classNames({
                 [styles.field]: true,

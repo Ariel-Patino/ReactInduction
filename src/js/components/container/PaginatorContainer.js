@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import autoBind from "react-autobind";
 import classNames from "classnames";
-import Pagination from "pagination-component";
+
 import Styles from "../../../../dist/styles/css/app.blocks.css";
 
 class PaginatorContainer extends Component {
@@ -18,7 +18,7 @@ class PaginatorContainer extends Component {
 
     render() {
         return (
-            <div className="App">
+            <div className="Styles">
                 <Pagination currentPage={13}
                     pageCount={50}
                     pageLinkClassName="page-link"
@@ -29,4 +29,4 @@ class PaginatorContainer extends Component {
     }
 }
 
-export default App;
+ReactDOM.render(<PaginatorContainer />, document.getElementById("article-list-pagination"));

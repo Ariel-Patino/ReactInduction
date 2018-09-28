@@ -1,13 +1,6 @@
-body {
-  font: 100% sans-serif;
-  margin: 15px; }
-
 input {
   font-size: 18px;
   outline: 0; }
-
-.articles-ri > .logo {
-  background-color: aqua; }
 
 .field {
   border: 1px solid #ddd;
@@ -22,7 +15,8 @@ input {
   box-sizing: border-box;
   margin: 0;
   padding: 10px 0 10px 10px;
-  width: 100%; }
+  width: 100%;
+  margin-left: 10px; }
 
 .clear-button,
 .submit-button {
@@ -66,7 +60,13 @@ input {
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
-          user-select: none; }
+          user-select: none;
+  display: block;
+  z-index: 1;
+  background-color: white;
+  min-width: 90%;
+  margin-top: 6.3%;
+  margin-left: 1px; }
 
 .suggestion {
   cursor: pointer;

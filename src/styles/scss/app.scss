@@ -1,15 +1,6 @@
-body {
-    font: 100% sans-serif;
-    margin: 15px;
-}
-
 input {
     font-size: 18px;
     outline: 0;
-}
-
-.articles-ri > .logo {
-    background-color: aqua;
 }
 
 .field {
@@ -28,6 +19,7 @@ input {
     margin: 0;
     padding: 10px 0 10px 10px;
     width: 100%;
+    margin-left: 10px;
 }
 
 .clear-button,
@@ -74,6 +66,12 @@ input {
     position: absolute;
     top: -1px;
     user-select: none;
+    display: block;
+    z-index: 1;
+    background-color: white;
+    min-width: 90%;
+    margin-top: 6.3%;
+    margin-left: 1px;
 }
 
 .suggestion {
