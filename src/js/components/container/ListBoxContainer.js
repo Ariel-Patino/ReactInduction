@@ -17,19 +17,6 @@ class Suggestions extends React.Component {
         }
     }
 
-    componentDidMount() {
-        fetch("https://jsonplaceholder.typicode.com/comments/1")
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    console.log('result', result);
-                },
-                (error) => {
-                    console.log("fatal Error", error);
-                }
-            )
-    }
-
     scrollToSuggestion() {
         const { focusedSuggestion, list } = this;
         const listRect = list.getBoundingClientRect();

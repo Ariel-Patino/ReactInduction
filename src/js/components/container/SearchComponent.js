@@ -6,69 +6,79 @@ import appStyle from "../../../../dist/styles/css/app.blocks.css";
 import words from "../../../../dist/assets/files/words.json";
 
 class SearchComponent extends Component {
-  constructor(props) {
-    super(props);    
+	constructor(props) {
+	super(props);    
 
-    this.state = {
-        suggestions: []
-      };
+	this.state = {
+		suggestions: []
+		};
 
-      this.appStyles = null;
-      autoBind(this);
-  }
+		this.appStyles = null;
+		autoBind(this);
+	}
 
-  handleClear() {
-    this.setState({
-      suggestions: []
-    });
-  }
-
-  handleChange(input) {
-    this.setState({
-      suggestions: words.filter(word => word.startsWith(input))
-    });
-  }
-
-  handleSelection(value) {
-    if (value) {
-      console.info(`Selected "${value}"`);
+	componentDidMount() {
+        fetch("http://localhost:59666/articlesPaginator/30/15")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    console.log('result', result);
+                },
+                (error) => {
+                    console.log("fatal Error", error);
+                }
+            )
     }
-  }
 
-  handleSearch(value) {
-    if (value) {
-      console.info(`Searching "${value}"`);
-    }
-  }
+	handleClear() {
+		this.setState({
+			suggestions: []
+		});
+	}
 
-  suggestionRenderer(suggestion, searchTerm) {
-    return (
-      <span>
-        <span>{searchTerm}</span>
-        <strong>{suggestion.substr(searchTerm.length)}</strong>
-      </span>
-      );
-     
-  }
+	handleChange(input) {
+		this.setState({
+			suggestions: words.filter(word => word.startsWith(input))
+		});
+	}
 
-    render() {
+	handleSelection(value) {
+		if (value) {
+			console.info(`Selected "${value}"`);
+		}
+	}
 
-    return (
-      <SearchBar
-        autoFocus
-        renderClearButton
-        renderSearchButton
-        placeholder="Select an attribute"
-        onChange={this.handleChange}
-        onClear={this.handleClear}
-        onSelection={this.handleSelection}
-        onSearch={this.handleSearch}
-        suggestions={this.state.suggestions}
-        suggestionRenderer={this.suggestionRenderer}
-        styles={appStyle}
-      />
-    );
-  }
+	handleSearch(value) {
+		if (value) {
+			console.info(`Searching "${value}"`);
+		}
+	}
+
+	suggestionRenderer(suggestion, searchTerm) {
+		return (
+			<span>
+			<span>{searchTerm}</span>
+			<strong>{suggestion.substr(searchTerm.length)}</strong>
+			</span>
+		);     
+	}
+
+	render() {
+		return (
+			<SearchBar
+			autoFocus
+			renderClearButton
+			renderSearchButton
+			placeholder="Select an attribute"
+			onChange={this.handleChange}
+			onClear={this.handleClear}
+			onSelection={this.handleSelection}
+			onSearch={this.handleSearch}
+			suggestions={this.state.suggestions}
+			suggestionRenderer={this.suggestionRenderer}
+			styles={appStyle}
+			/>);
+	}
 }
 
 ReactDOM.render(<SearchComponent />, document.getElementById("search-article-autocomplete"));
