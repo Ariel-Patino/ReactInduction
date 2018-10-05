@@ -76,8 +76,8 @@ class SearchBar extends Component {
         });
     }
 
-    handleClick(event) {
-        if (!this.container.contains(event.target)) {
+    handleClick(event) {		
+        if (this.container && !this.container.contains(event.target)) {
             this.props.onClear();
         }
     }
@@ -191,7 +191,7 @@ class SearchBar extends Component {
               <input
                 {...attributes}
                 className={styles.input}
-                type="text"
+                type='text'
                 ref={ref => this.input = ref}
                 value={state.value}
                 onChange={this.handleChange}

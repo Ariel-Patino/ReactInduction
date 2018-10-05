@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
-import List from "../presentational/List";
+import List from '../presentational/List';
 
 class ListContainer extends Component {
     constructor(props) {

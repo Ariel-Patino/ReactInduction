@@ -9,5 +9,6 @@ exports.text = (req, res) => {
 };
 
 exports.json = (req, res) => {
+	res.setHeader('Access-Control-Allow-Origin','*');
 	res.json(articles);
 };

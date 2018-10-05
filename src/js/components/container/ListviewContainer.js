@@ -1,16 +1,40 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
-import autoBind from "react-autobind";
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import autoBind from 'react-autobind';
 import classNames from 'classnames';
 import Article from './ListContainer';
-import Words from "../../../../dist/assets/files/words.json";
-import Styles from "../../../../dist/styles/css/app.blocks.css";
+import PaginatorContainer from './PaginatorContainer';
+import Words from '../../../../dist/assets/files/words.json';
+import Styles from '../../../../dist/styles/css/app.blocks.css';
 
 
 class ListviewComponent extends Component {
     constructor(props) {
     super(props);    
+		this.state = {
+			pageSize: 15,
+			articles: []
+		};
         autoBind(this);
+    }
+
+	
+	componentDidMount() {
+        fetch('http://localhost:59666/findArticlePage/null/' + this.state.pageSize)
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    console.log('result', result);
+					this.setState({
+						pageSize: this.state.pageSize,
+						articles: result
+						}
+					);
+                },
+                (error) => {
+                    console.log('fatal Error', error);
+                }
+			)
     }
 
     handleMouseMove(event, index) {
@@ -29,7 +53,8 @@ class ListviewComponent extends Component {
         );
     }
 
-    renderSuggestion(suggestion, index) {
+    renderArticle(article, index) {		
+		const suggestion = article.name;
         const { props } = this;
         const isFocused = props.focusedSuggestion === index;
 
@@ -43,8 +68,8 @@ class ListviewComponent extends Component {
                 key={suggestion}
                 onClick={this.handleOnClickSuggestion}
                 onMouseMove={this.handleMouseMove}
-                ref=""
-                searchTerm=""
+                ref=''
+                searchTerm=''
                 suggestion={suggestion}
                 suggestionRenderer={this.suggestionRenderer}
             />
@@ -53,11 +78,14 @@ class ListviewComponent extends Component {
 
     render() {
         return (
-            <ul className={Styles.listview} >
-                {Words.map(this.renderSuggestion)}
-            </ul>
+			<div>
+				<ul className={Styles.listview} >
+					{this.state.articles.map(this.renderArticle)}
+				</ul>
+				<PaginatorContainer perPage= {this.state.pageSize} />
+			</div>
         );
     }
 }
 
-ReactDOM.render(<ListviewComponent />, document.getElementById("article-list-view"));
+ReactDOM.render(<ListviewComponent />, document.getElementById('article-list-view'));

@@ -7,11 +7,13 @@ const format = (path) =>  {
 		res.format(obj);
 	};
 }
-
+//Retuns all articles
 app.get('/articles', format('./get/articles'));
-app.get('/articlesPaginator/:currentPage/:pageLength/', format('./get/articlesPaginator'));
+//Retuns the page of article
 app.get('/findArticlePage/:id/:pageLength', format('./get/findArticlePage'));
+//Return the article required according 
 app.get('/findArticle/:id', format('./get/findArticle'));
+//Returns total pages for articles
 app.get('/totalPages/:pagesLength',format('./get/totalPages'));
 
 

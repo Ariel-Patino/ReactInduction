@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
-import autoBind from "react-autobind";
-import SearchBar from "./SearchBar";
-import appStyle from "../../../../dist/styles/css/app.blocks.css";
-import words from "../../../../dist/assets/files/words.json";
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import autoBind from 'react-autobind';
+import SearchBar from './SearchBar';
+import appStyle from '../../../../dist/styles/css/app.blocks.css';
+import words from '../../../../dist/assets/files/words.json';
 
 class SearchComponent extends Component {
 	constructor(props) {
@@ -16,19 +16,6 @@ class SearchComponent extends Component {
 		this.appStyles = null;
 		autoBind(this);
 	}
-
-	componentDidMount() {
-        fetch("http://localhost:59666/articlesPaginator/30/15")
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    console.log('result', result);
-                },
-                (error) => {
-                    console.log("fatal Error", error);
-                }
-            )
-    }
 
 	handleClear() {
 		this.setState({
@@ -44,13 +31,13 @@ class SearchComponent extends Component {
 
 	handleSelection(value) {
 		if (value) {
-			console.info(`Selected "${value}"`);
+			console.info(`Selected '${value}'`);
 		}
 	}
 
 	handleSearch(value) {
 		if (value) {
-			console.info(`Searching "${value}"`);
+			console.info(`Searching '${value}'`);
 		}
 	}
 
@@ -69,7 +56,7 @@ class SearchComponent extends Component {
 			autoFocus
 			renderClearButton
 			renderSearchButton
-			placeholder="Select an attribute"
+			placeholder='Select an attribute'
 			onChange={this.handleChange}
 			onClear={this.handleClear}
 			onSelection={this.handleSelection}
@@ -81,4 +68,4 @@ class SearchComponent extends Component {
 	}
 }
 
-ReactDOM.render(<SearchComponent />, document.getElementById("search-article-autocomplete"));
+ReactDOM.render(<SearchComponent />, document.getElementById('search-article-autocomplete'));

@@ -1,5 +1,5 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 const List = ({ className, customKey, customRef, onClick, onMouseMove, suggestionRenderer}) => (
     <li
         className={className}
