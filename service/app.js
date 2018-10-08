@@ -15,6 +15,8 @@ app.get('/findArticlePage/:id/:pageLength', format('./get/findArticlePage'));
 app.get('/findArticle/:id', format('./get/findArticle'));
 //Returns total pages for articles
 app.get('/totalPages/:pagesLength',format('./get/totalPages'));
+//returns the especific page
+app.get('/getPage/:page/:pagesLength',format('./get/getPage'));
 
 
 if (!module.parent) {

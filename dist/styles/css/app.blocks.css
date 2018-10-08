@@ -93,3 +93,8 @@ input {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none; }
+
+.active {
+	background-color: red;
+	width: 300px;
+}

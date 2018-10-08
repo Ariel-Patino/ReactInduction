@@ -13,29 +13,57 @@ class ListviewComponent extends Component {
     super(props);    
 		this.state = {
 			pageSize: 15,
+			totalPages: 0,
 			articles: []
 		};
         autoBind(this);
     }
 
-	
 	componentDidMount() {
-        fetch('http://localhost:59666/findArticlePage/null/' + this.state.pageSize)
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    console.log('result', result);
-					this.setState({
-						pageSize: this.state.pageSize,
-						articles: result
-						}
-					);
-                },
-                (error) => {
-                    console.log('fatal Error', error);
-                }
-			)
+		fetch('http://localhost:59666/totalPages/' + this.state.pageSize)
+		.then(res => res.json())
+		.then(
+            (totalPages) => {
+						fetch('http://localhost:59666/findArticlePage/null/' + this.state.pageSize)
+						.then(res => res.json())
+						.then(
+							(articles) => {
+								this.setState({
+									pageSize: this.state.pageSize,
+									articles: articles,
+									totalPages: totalPages
+									}
+								);
+							},
+							(error) => {
+								console.log('fatal Error', error);
+							}
+						)          					
+            },
+            (error) => {
+                console.log('fatal Error', error);
+            }			
+		);
     }
+
+	loadArticlesFromServerAccordingPage(page) {
+	console.log(page.selected);
+	console.log(`http://localhost:59666/getPage/${page.selected}/${this.state.pageSize}/`);
+	console.log(this.state.pageSize,'this.state.pageSize');
+
+		fetch(`http://localhost:59666/getPage/${page.selected}/${this.state.pageSize}/`)
+		.then(res => res.json())
+		.then(
+			(page) => {
+				this.setState({
+									pageSize: this.state.pageSize,
+									articles: page,
+									totalPages: this.state.totalPages
+									}
+								);
+			}
+		);
+	}
 
     handleMouseMove(event, index) {
 
@@ -82,7 +110,11 @@ class ListviewComponent extends Component {
 				<ul className={Styles.listview} >
 					{this.state.articles.map(this.renderArticle)}
 				</ul>
-				<PaginatorContainer perPage= {this.state.pageSize} />
+				<PaginatorContainer 
+					perPage = { this.state.pageSize } 
+					totalPages = { this.state.totalPages }
+					handlePageClick = { this.loadArticlesFromServerAccordingPage }
+					/>
 			</div>
         );
     }
